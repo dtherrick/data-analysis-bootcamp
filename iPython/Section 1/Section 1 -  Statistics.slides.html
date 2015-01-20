@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<title>Section 1 -  Statistics - Understanding Your Data slides</title>
+<title>Section 1 -  Statistics slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -1745,7 +1745,15 @@ div.output_prompt {
 <li>Modeling Data</li>
 <li>Mining Data</li>
 <li><p>Using Data</p></li>
-<li><p>We may touch on the <strong>OSEMN</strong> data model used by many data scientists</p></li>
+<li>Throughout thr course, will refer to the <strong>OSEMN</strong> data model:
+<ul>
+<li>Basic workflow used by many data scientists</li>
+<li>__O__btain</li>
+<li>__S__crub</li>
+<li>__E__xplore</li>
+<li>__M__odel</li>
+<li>i__N__terpret</li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -1772,32 +1780,36 @@ div.output_prompt {
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">Statistics</td>
-<td align="left">1 - 2</td>
+<td align="left">Installing Python + Packages</td>
+<td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">Graphics</td>
-<td align="left">2</td>
+<td align="left">Statistics</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">Analytics</td>
-<td align="left">3</td>
+<td align="left">2</td>
 </tr>
 <tr class="odd">
+<td align="left">Graphics</td>
+<td align="left">2-3</td>
+</tr>
+<tr class="even">
 <td align="left">Computation</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Applications</td>
-<td align="left">4</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">CAP Overview</td>
+<td align="left">3</td>
 </tr>
 <tr class="odd">
-<td align="left">CAP Overview</td>
-<td align="left">4</td>
-</tr>
-<tr class="even">
 <td align="left">Conclusions</td>
-<td align="left">4</td>
+<td align="left">3</td>
 </tr>
 </tbody>
 </table>
@@ -2262,7 +2274,7 @@ Delta: 0.51157212947
 </ul></li>
 <li>Our problem:</li>
 <li>Using Pandas, the field coding is inaccurate and doesn't load properly</li>
-<li>Survey codebook <a href="link">http://http://nsfg.icpsr.umich.edu/cocoon/WebDocs/NSFG/public/index.htm</a> returns a 404 error.
+<li>Survey <a href="http://nsfg.icpsr.umich.edu/cocoon/WebDocs/NSFG/public/index.htm">codebook</a> returns a 404 error.
 <ul>
 <li>Unable to quickly verify the coding</li>
 </ul></li>
@@ -4964,7 +4976,7 @@ RERERERERESqwP8H6HaXJUFeIMYAAAAASUVORK5CYII=
 <ul>
 <li>Rules of Probability</li>
 <li>Monty Hall</li>
-<li>Streaks and Hot Spots</li>
+<li>Monte Carlo</li>
 <li>Bayes’s Theorem</li>
 </ul>
 </div>
@@ -5531,7 +5543,238 @@ j+irAAAAAElFTkSuQmCC
 </ul>
 </div>
 </div>
-</div><div style=display:none>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="huh">Huh?</h2>
+<p>Let's start over, and put it in English:</p>
+<ul>
+<li>First, we need to distinguish between <strong>tests</strong> and <strong>events</strong>
+<ul>
+<li>Tests are not the event.
+<ul>
+<li>We have a cancer test, separate from the event of actually having cancer. We have a test for spam, separate from the event of actually having a spam message.</li>
+</ul></li>
+<li>Tests are flawed.
+<ul>
+<li>Tests detect things that don’t exist (false positive), and miss things that do exist (false negative).</li>
+</ul></li>
+<li>Tests give us test probabilities, not the real probabilities.
+<ul>
+<li>People often consider the test results directly, without considering the errors in the tests.</li>
+</ul></li>
+<li>False positives skew results.
+<ul>
+<li>Suppose you are searching for something really rare (1 in a million). Even with a good test, it’s likely that a positive result is really a false positive on somebody in the 999,999.</li>
+</ul></li>
+<li>People prefer natural numbers.
+<ul>
+<li>Saying “100 in 10,000″ rather than “1%” helps people work through the numbers with fewer errors, especially with multiple percentages (“Of those 100, 80 will test positive” rather than “80% of the 1% will test positive”).</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Bayes’ theorem finds the actual probability of an event from the results of your tests.</strong></p>
+<p>For example, you can:</p>
+<ul>
+<li><p><strong>Correct for measurement errors.</strong> If you know the real probabilities and the chance of a false positive and false negative, you can correct for measurement errors.</p></li>
+<li><p><strong>Relate the actual probability to the measured test probability.</strong> Bayes’ theorem lets you relate <span class="math">\(P(A|B)\)</span>, the chance that an event A happened given the indicator B, and <span class="math">\(P(X|A)\)</span>, the chance the indicator B happened given that event A occurred. Given mammogram test results and known error rates, you can predict the actual chance of having cancer.</p></li>
+</ul>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="the-bayesian-approach-to-breast-cancer-testing">The Bayesian Approach to Breast Cancer Testing</h2>
+<p>Let's assume we know the following scenario: * 1% of women have breast cancer (and therefore 99% do not). * 80% of mammograms detect breast cancer when it is there (and therefore 20% miss it). * 9.6% of mammograms detect breast cancer when it’s <strong>not</strong> there (and therefore 90.4% correctly return a negative result)</p>
+<p>The Probability Looks like:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Cancer (1%)</th>
+<th align="left">No Cancer (99%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Positive Test</td>
+<td align="left">80%</td>
+<td align="left">9.6%</td>
+</tr>
+<tr class="even">
+<td align="left">Negative Test</td>
+<td align="left">20%</td>
+<td align="left">90.4%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-do-we-read-it">How do we read it?</h3>
+<ul>
+<li>1% of people have cancer</li>
+<li>If you <strong>already have cancer</strong>, you are in the first column. There’s an 80% chance you will test positive. There’s a 20% chance you will test negative.</li>
+<li>If you <strong>don’t have cancer</strong>, you are in the second column. There’s a 9.6% chance you will test positive, and a 90.4% chance you will test negative.</li>
+</ul>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="how-accurate-is-the-test">How Accurate Is The Test?</h2>
+<ul>
+<li><p>Now suppose you get a positive test result. What are the chances you have cancer? 80%? 99%? 1%?</p></li>
+<li>Here’s how I think about it:
+<ul>
+<li>A positive result means we’re somewhere in the top row of our table.
+<ul>
+<li>Let’s not assume anything — it could be a true positive or a false positive.</li>
+</ul></li>
+</ul></li>
+<li>The chances of a true positive = chance you have cancer * chance test caught it = 1% * 80% = .008</li>
+<li><p>The chances of a false positive = chance you don’t have cancer * chance test caught it anyway = 99% * 9.6% = 0.09504</p></li>
+</ul>
+<p>The probability table now looks like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Cancer (1%)</th>
+<th align="left">No Cancer (99%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Positive Test</td>
+<td align="left">True Pos: 1% * 80%</td>
+<td align="left">False Pos: 99% * 9.6%</td>
+</tr>
+<tr class="even">
+<td align="left">Negative Test</td>
+<td align="left">False Neg: 1% * 20%</td>
+<td align="left">True Neg: 99% * 90.4%</td>
+</tr>
+</tbody>
+</table>
+<p>Remember, the chance of an event is the number of ways it could happen, given all possible outcomes:</p>
+<p><span class="math">\[P(event) = \frac{P(desired)}{P(all)}\]</span></p>
+<p>The chance of getting a real, positive result is .008. The chance of getting any type of positive result is the chance of a true positive plus the chance of a false positive (.008 + 0.09504 = .10304).</p>
+<p>So, our chance of cancer is .008/.10304 = 0.0776, or about 7.8%.</p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So: a positive mammogram only means you have a <strong>7.8%</strong> chance of cancer, rather than <strong>80%</strong> (the supposed accuracy of the test).</p>
+<p>It might seem strange at first but it makes sense:</p>
+<ul>
+<li>The test gives a false positive 10% of the time, so there will be a ton of false positives in any given population.
+<ul>
+<li>There will be so many false positives, in fact, that most of the positive test results will be wrong.</li>
+</ul></li>
+<li>Think about it a different way:
+<ul>
+<li>We start with 100 people.</li>
+<li>1 person has cancer.
+<ul>
+<li>They are highly likely to test positive.</li>
+</ul></li>
+<li>Of 99 remaining people - 10 will test positive falsely.</li>
+<li><p>So just 1 result in 11 is correct, so there’s a 1/11 chance of having cancer given a positive test.</p></li>
+<li><p>The real number is 7.8% (closer to 1/13, computed above), but we found a reasonable estimate without a calculator.</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="reintroduce-the-bayes-theorem-equation">Reintroduce the Bayes' Theorem Equation:</h2>
+<p>Bayes' Theorem is: <span class="math">\[P(A|B) = \frac{P(B|A)\, P(A)}{P(B|A) \centerdot P(A) + P(B|\sim A) \centerdot P(\sim A)}\]</span></p>
+<p>In the context of the above problem: P(A|B) = Chance of having cancer (A) given a positive test (B). This is what we want to know: How likely is it to have cancer with a positive result? In our case it was 7.8%. P(B|A) = Chance of a positive test (B) given that you had cancer (A). This is the chance of a true positive, 80% in our case. P(A) = Chance of having cancer (1%). P(~A) = Chance of not having cancer (99%). P(B|~A) = Chance of a positive test (B) given that you didn’t have cancer (~A). This is a false positive, 9.6% in our case.</p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="solve-the-cancer-test-problem-with-bayes">Solve the cancer test problem with Bayes:</h2>
+<p><span class="math">\[P(A|B) = \frac{0.80 \centerdot 0.01}{0.8 \centerdot 0.01 + 0.096 \centerdot .99}\]</span></p>
+<p><span class="math">\[P(A|B) = \frac{.008}{.10304}\]</span></p>
+<p><span class="math">\[P(A|B) = 0.0776 = 0.078 = 7.8%\]</span></p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercise">Exercise:</h2>
+<ul>
+<li>What is the chance of a false negative (ie, you test negative but actually have cancer?)</li>
+</ul>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+    </div><div style=display:none>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
