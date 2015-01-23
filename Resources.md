@@ -15,6 +15,7 @@
 ## Pandas tutorials
 * [Learn pandas](https://bitbucket.org/hrojas/learn-pandas)
 * [Pandas main page](http://pandas.pydata.org/)
+* [Learning Python for Social Sciences](http://nealcaren.github.io/python-tutorials)
 
 ## Graphics
 * [d3.js tutorial](https://github.com/mbostock/d3/wiki/Tutorials)
